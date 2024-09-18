@@ -1,10 +1,12 @@
-[gd_scene load_steps=50 format=3 uid="uid://b7v0s21042x5n"]
+[gd_scene load_steps=55 format=3 uid="uid://b7v0s21042x5n"]
 
 [ext_resource type="Texture2D" uid="uid://dn1ed37cxhyu" path="res://Assets/PlayerCharacter/_Idle.png" id="1_dypmx"]
 [ext_resource type="Texture2D" uid="uid://6ux36w5nl8r0" path="res://Assets/PlayerCharacter/_Attack.png" id="1_fbsey"]
+[ext_resource type="Script" path="res://character.gd" id="1_nrygu"]
 [ext_resource type="Texture2D" uid="uid://dy0wg08xua36u" path="res://Assets/PlayerCharacter/_Run.png" id="2_7qtm1"]
 [ext_resource type="Texture2D" uid="uid://cq5nlm7fyupb4" path="res://Assets/PlayerCharacter/_Roll.png" id="3_1c6wy"]
 [ext_resource type="Texture2D" uid="uid://bfsgoyv1xgdi6" path="res://Assets/PlayerCharacter/_Attack2.png" id="4_ky1bh"]
+[ext_resource type="Texture2D" uid="uid://bub1vv4ulsdeg" path="res://Assets/PlayerCharacter/_Jump.png" id="4_t0me8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pjhsr"]
 atlas = ExtResource("1_fbsey")
@@ -61,6 +63,18 @@ region = Rect2(960, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_28jwx"]
 atlas = ExtResource("1_dypmx")
 region = Rect2(1080, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnxhm"]
+atlas = ExtResource("4_t0me8")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvqvw"]
+atlas = ExtResource("4_t0me8")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd4ax"]
+atlas = ExtResource("4_t0me8")
+region = Rect2(240, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl8ej"]
 atlas = ExtResource("3_1c6wy")
@@ -230,6 +244,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jnxhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvqvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd4ax")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rl8ej")
 }, {
 "duration": 1.0,
@@ -333,14 +361,15 @@ radius = 10.8333
 height = 31.6667
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_nrygu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(5, -40)
 sprite_frames = SubResource("SpriteFrames_kh311")
-animation = &"idle"
-frame = 4
-frame_progress = 0.382318
+animation = &"jump"
+frame = 2
+frame_progress = 0.0991163
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19)
