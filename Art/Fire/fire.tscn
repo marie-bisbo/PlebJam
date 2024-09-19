@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://f4llduwqkanf"]
+
+[sub_resource type="Gradient" id="Gradient_7gg0n"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.764758, 0.630125, 0.0655242, 1, 0.968418, 0.436799, 0.172137, 1, 0.15, 0.15, 0.15, 0.701961)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ircdc"]
+gradient = SubResource("Gradient_7gg0n")
+
+[sub_resource type="Curve" id="Curve_tcr5m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ney1i"]
+curve = SubResource("Curve_tcr5m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l084o"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 0.999984
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 0.999978
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ney1i")
+color_ramp = SubResource("GradientTexture1D_ircdc")
+turbulence_enabled = true
+turbulence_noise_scale = 5.0
+
+[node name="Fire" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_l084o")
