@@ -203,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6horc")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -367,9 +367,7 @@ script = ExtResource("1_nrygu")
 texture_filter = 1
 position = Vector2(5, -40)
 sprite_frames = SubResource("SpriteFrames_kh311")
-animation = &"jump"
-frame = 2
-frame_progress = 0.0991163
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19)
