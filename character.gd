@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var anim_tree = $AnimationTree
 
 enum state {IDLE, RUNNING, JUMPING, ATTACKING, ROLLING}
 
@@ -13,28 +14,22 @@ func _physics_process(delta):
 	
 	match current_state:
 		state.IDLE:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			animated_sprite.play("idle")
+			idle()
 		state.RUNNING:
-			var direction = Input.get_axis("move_left", "move_right")
-			if direction:
-				velocity.x = direction * SPEED
-				animated_sprite.play("run")
-				animated_sprite.flip_h = direction < 0
+			run()
 		state.JUMPING:
-			velocity += get_gravity() * delta
-			animated_sprite.play("jump")
+			jump(delta)
 		state.ATTACKING:
-			animated_sprite.play("attack")
+			attack()
 		state.ROLLING:
-			pass
+			roll()
 
 	move_and_slide()
 
 func set_current_state():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and current_state != state.JUMPING:
 		current_state = state.ATTACKING
-	else:
+	elif current_state != state.ATTACKING:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 		if not is_on_floor():
@@ -44,16 +39,26 @@ func set_current_state():
 			current_state = state.RUNNING if direction else state.IDLE
 			
 func idle():
-	pass
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	anim_tree.get("parameters/playback").travel("Idle")
 	
 func run():
-	pass
+	var direction = Input.get_axis("move_left", "move_right")
+	if direction:
+		velocity.x = direction * SPEED
+		anim_tree.get("parameters/playback").travel("Run")
+		animated_sprite.flip_h = direction < 0
 	
-func jump():
-	pass
+func jump(delta):
+	velocity += get_gravity() * delta
+	anim_tree.get("parameters/playback").travel("Jump")
 	
 func attack():
-	pass
+	anim_tree.get("parameters/playback").travel("Attack")
 	
 func roll():
 	pass
+
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == "attack":
+		current_state = state.IDLE
