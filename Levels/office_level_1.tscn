@@ -21,7 +21,7 @@ tile_map_data = PackedByteArray("AAD5/y8AAQACAAAAAAD5/zAAAQACAAAAAAD5/zEAAQACAAA
 tile_set = ExtResource("1_3mdhw")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_i8v05")]
-position = Vector2(45, 618)
+position = Vector2(45, 590)
 
 [node name="CameraArea2" parent="." instance=ExtResource("3_g1njf")]
 position = Vector2(297, 760)
