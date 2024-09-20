@@ -27,16 +27,20 @@ func _physics_process(delta):
 	move_and_slide()
 
 func set_current_state():
-	if Input.is_action_just_pressed("attack") and current_state != state.JUMPING:
+	if Input.is_action_just_pressed("attack") and current_state not in [state.JUMPING, state.ROLLING]:
 		current_state = state.ATTACKING
 	elif current_state != state.ATTACKING:
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-		if not is_on_floor():
-			current_state = state.JUMPING
-		else:
-			var direction = Input.get_axis("move_left", "move_right")
-			current_state = state.RUNNING if direction else state.IDLE
+		if Input.is_action_just_pressed("roll"):
+			if is_on_floor():
+				current_state = state.ROLLING 
+		if  current_state != state.ROLLING:
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				velocity.y = JUMP_VELOCITY
+			if not is_on_floor():
+				current_state = state.JUMPING
+			else:
+				var direction = Input.get_axis("move_left", "move_right")
+				current_state = state.RUNNING if direction else state.IDLE
 			
 func idle():
 	velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -57,8 +61,8 @@ func attack():
 	anim_tree.get("parameters/playback").travel("Attack")
 	
 func roll():
-	pass
+	anim_tree.get("parameters/playback").travel("Roll")
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == "attack":
+	if anim_name in ["attack", "roll"]:
 		current_state = state.IDLE
