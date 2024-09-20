@@ -602,7 +602,7 @@ states/Run/position = Vector2(383, 219)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0safp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_gjlvc"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_uxa1k"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_perml"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x2a06"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_p8yib"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_ds7vf"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_15fjc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wunrq"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_lh7wh"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_onts1")]
 graph_offset = Vector2(-257, -35)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_nrygu")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -4,6 +4,7 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var anim_tree = $AnimationTree
+@onready var camera_2d = $Camera2D
 
 enum state {IDLE, RUNNING, JUMPING, ATTACKING, ROLLING}
 

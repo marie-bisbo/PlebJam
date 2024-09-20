@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://chrwhaaar05rx"]
 
-[ext_resource type="Texture2D" uid="uid://dpk25f78o3xmu" path="res://Art/BlockoutMapTiles/TileSet.png" id="1_sigrl"]
-[ext_resource type="PackedScene" uid="uid://c3udm4o1qk1bh" path="res://Assets/PlayerCharacter/player_character.tscn" id="2_i8v05"]
+[ext_resource type="Texture2D" uid="uid://dd5j1xfhmw11l" path="res://Art/BlockoutMapTiles/TileSet.png" id="1_sigrl"]
+[ext_resource type="PackedScene" uid="uid://b7v0s21042x5n" path="res://player_character.tscn" id="2_i8v05"]
 [ext_resource type="PackedScene" uid="uid://crfw0yvvxq6ul" path="res://Assets/CameraArea/camera_area.tscn" id="3_g1njf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ysc14"]
