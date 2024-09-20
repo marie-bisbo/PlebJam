@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3bfolmi4cyty"]
+
+[ext_resource type="PackedScene" uid="uid://b7v0s21042x5n" path="res://player_character.tscn" id="1_fyfxo"]
+[ext_resource type="Texture2D" uid="uid://bv8h8akefhvvy" path="res://icon.svg" id="2_phv8n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wlye1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnbyg"]
+size = Vector2(125, 119)
+
+[node name="main" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_fyfxo")]
+position = Vector2(502, 430)
+
+[node name="Thing" type="StaticBody2D" parent="."]
+position = Vector2(500, 500)
+scale = Vector2(5, 1)
+physics_material_override = SubResource("PhysicsMaterial_wlye1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Thing"]
+position = Vector2(1.5, -1.5)
+shape = SubResource("RectangleShape2D_cnbyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Thing"]
+texture = ExtResource("2_phv8n")

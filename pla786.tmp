@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://b7v0s21042x5n"]
+[gd_scene load_steps=90 format=3 uid="uid://b7v0s21042x5n"]
 
 [ext_resource type="Texture2D" uid="uid://dn1ed37cxhyu" path="res://Assets/PlayerCharacter/_Idle.png" id="1_dypmx"]
 [ext_resource type="Texture2D" uid="uid://6ux36w5nl8r0" path="res://Assets/PlayerCharacter/_Attack.png" id="1_fbsey"]
@@ -598,50 +598,79 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjlvc"]
 advance_mode = 2
-advance_expression = "abs(velocity.x) > 0.001"
+advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uxa1k"]
 advance_mode = 2
-advance_expression = "abs(velocity.x) < 0.001 or attacking or rolling or !is_on_floor()"
+advance_condition = &"!moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_perml"]
 advance_mode = 2
-advance_expression = "attacking"
+advance_condition = &"attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x2a06"]
 switch_mode = 2
 advance_mode = 2
+advance_condition = &"!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8yib"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ds7vf"]
+advance_mode = 2
+advance_condition = &"attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_15fjc"]
-advance_mode = 2
-advance_expression = "!is_on_floor()"
+advance_mode = 0
+advance_condition = &"jumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wunrq"]
+switch_mode = 2
+advance_mode = 0
+advance_condition = &"!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lh7wh"]
 advance_mode = 2
-advance_expression = "is_on_floor()"
+advance_condition = &"jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_onts1"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8w5ck"]
 advance_mode = 2
-advance_expression = "rolling"
+advance_condition = &"rolling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xsisn"]
 switch_mode = 2
 advance_mode = 2
+advance_condition = &"!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_orgbw"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0nu3"]
+advance_mode = 2
+advance_condition = &"rolling"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_amc3y"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_242r6")
-states/Attack/position = Vector2(600, 100)
+states/Attack/position = Vector2(732, 100)
 states/Idle/node = SubResource("AnimationNodeBlendTree_liw3r")
 states/Idle/position = Vector2(383, 100)
 states/Jump/node = SubResource("AnimationNodeBlendTree_0cght")
-states/Jump/position = Vector2(221, 226)
+states/Jump/position = Vector2(732, 219)
 states/Roll/node = SubResource("AnimationNodeBlendTree_75k3a")
-states/Roll/position = Vector2(383, -21)
+states/Roll/position = Vector2(200, 219)
 states/Run/node = SubResource("AnimationNodeBlendTree_nhkmv")
-states/Run/position = Vector2(383, 226)
-states/Start/position = Vector2(187, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0safp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_gjlvc"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_uxa1k"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_perml"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x2a06"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_15fjc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wunrq"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_8w5ck"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_xsisn")]
-graph_offset = Vector2(-434, -61)
+states/Run/position = Vector2(383, 219)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0safp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_gjlvc"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_uxa1k"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_perml"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x2a06"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_p8yib"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_ds7vf"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_15fjc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wunrq"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_lh7wh"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_onts1"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_8w5ck"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_xsisn"), "Roll", "Run", SubResource("AnimationNodeStateMachineTransition_orgbw"), "Run", "Roll", SubResource("AnimationNodeStateMachineTransition_n0nu3")]
+graph_offset = Vector2(-404, -21)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_nrygu")
@@ -651,7 +680,6 @@ texture_filter = 1
 position = Vector2(5, -40)
 sprite_frames = SubResource("SpriteFrames_kh311")
 animation = &"jump"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19)
@@ -665,8 +693,12 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_amc3y")
-advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/!moving = false
+parameters/conditions/attacking = false
+parameters/conditions/jumping = false
+parameters/conditions/moving = false
+parameters/conditions/rolling = false
 parameters/Idle/TimeScale/scale = 0.4
 parameters/Run/TimeScale/scale = 0.7
 
