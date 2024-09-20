@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://chrwhaaar05rx"]
+[gd_scene load_steps=7 format=4 uid="uid://chrwhaaar05rx"]
 
 [ext_resource type="TileSet" uid="uid://bpm563kxkr8o2" path="res://Art/BlockoutMapTiles/BlockoutTileset.tres" id="1_3mdhw"]
 [ext_resource type="PackedScene" uid="uid://b7v0s21042x5n" path="res://player_character.tscn" id="2_i8v05"]
 [ext_resource type="PackedScene" uid="uid://crfw0yvvxq6ul" path="res://Assets/CameraArea/camera_area.tscn" id="3_g1njf"]
 [ext_resource type="PackedScene" uid="uid://f4llduwqkanf" path="res://Assets/Fire/fire.tscn" id="4_iptrc"]
+[ext_resource type="PackedScene" uid="uid://by53x3je8k3eo" path="res://Assets/Fire/Prefab_HarveyFire.tscn" id="5_b6n0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pxyd"]
 size = Vector2(232.188, 166.5)
@@ -40,6 +41,15 @@ position = Vector2(-105, 832)
 
 [node name="Fire2" parent="." instance=ExtResource("4_iptrc")]
 position = Vector2(-76, 816)
+
+[node name="HarveyFire" parent="." instance=ExtResource("5_b6n0u")]
+position = Vector2(184, 478)
+emission_rect_extents = Vector2(5, 0)
+spread = 18.98
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
 
 [editable path="CameraArea2"]
 [editable path="CameraArea"]
