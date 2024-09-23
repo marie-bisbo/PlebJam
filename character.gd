@@ -12,7 +12,7 @@ func _physics_process(delta):
 		attacking = true
 	
 	if Input.is_action_just_pressed("roll"):
-		if is_on_floor():
+		if is_on_floor() and abs(velocity.x) > 0:
 			rolling = true
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
