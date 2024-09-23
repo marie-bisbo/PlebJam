@@ -9,9 +9,24 @@ const JUMP_VELOCITY = -400.0
 var attacking = false
 var rolling = false
 
-func _physics_process(delta):
+var position_offset = Vector2(0, -20)
+var attack_range = Vector2(50, -20)
+
+func _physics_process(delta):	
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
+		# Raycast
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(position + position_offset, position + attack_range)
+		query.exclude = [self, $"../Thing"]
+		var result = space_state.intersect_ray(query)
+		if (result):
+			# print("Result: ", result.collider.destroy())
+			result.collider.queue_free()
+			pass
+		else:
+			print("No hit")
+			pass
 	
 	if Input.is_action_just_pressed("roll"):
 		if is_on_floor() and abs(velocity.x) > 0:
@@ -26,12 +41,16 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 		animated_sprite.flip_h = direction < 0
+		attack_range.x *= -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
 	move_and_slide()
 
-
+func _draw():
+	# draw_line(position_offset, attack_range, Color.CHARTREUSE, 1.0)
+	pass
+	
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == "attack":
 		attacking = false
