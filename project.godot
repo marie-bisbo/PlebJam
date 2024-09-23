@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PlebJam"
-run/main_scene="res://Art/Fire/fire.tscn"
+run/main_scene="res://Levels/office_level_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+
+[global_group]
+
+player="the player group, used for determining when a body is the player"
 
 [input]
 
@@ -53,3 +57,5 @@ roll={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.0742188, 0.0742188, 0.0742188, 1)
+viewport/transparent_background=true

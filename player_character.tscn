@@ -357,7 +357,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rpivi"]
-radius = 10.8333
+radius = 8.33333
 height = 31.6667
 
 [sub_resource type="Animation" id="Animation_b0fgw"]
@@ -643,8 +643,15 @@ states/Start/position = Vector2(187, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0safp"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_gjlvc"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_uxa1k"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_perml"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_x2a06"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_15fjc"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wunrq"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_8w5ck"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_xsisn")]
 graph_offset = Vector2(-434, -61)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_nrygu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -66)
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

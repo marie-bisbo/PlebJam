@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://by53x3je8k3eo"]
+
+[ext_resource type="Texture2D" uid="uid://bobb7prdr7c2u" path="res://Art/Fire/FireMasks.png" id="2_uhblw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rqr32"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_jkbmr"]
+min_value = -1.0
+_data = [Vector2(0, -0.010989), 0.0, 0.0, 0, 0, Vector2(0.5, 0.428571), 0.0, 0.0, 0, 0, Vector2(1, 0.428571), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_sy4n4"]
+max_value = 100.0
+_data = [Vector2(0, 9.89011), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6mmuq"]
+_data = [Vector2(0, 0.197802), 0.0, 0.0, 0, 0, Vector2(0.142857, 0.351648), 0.0, 0.0, 0, 0, Vector2(0.432773, 0.340659), 0.0, 0.0, 0, 0, Vector2(1, 0.769231), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_feoee"]
+offsets = PackedFloat32Array(0, 0.142857, 0.233333, 0.433333, 0.657143, 0.92381, 1)
+colors = PackedColorArray(0.98, 0.855867, 0.2352, 0, 1, 0.13273, 0, 0, 0.64, 0.618667, 0, 1, 0.26, 0.12701, 0.0026, 1, 0.277273, 0.130845, 0.004, 0.768984, 0.45, 0.1692, 0.018, 0.0666667, 0.54, 0.027, 0.0355499, 0)
+
+[sub_resource type="Curve" id="Curve_eg6q6"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="HarveyFire" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_rqr32")
+amount = 80
+speed_scale = 0.8
+texture = ExtResource("2_uhblw")
+emission_shape = 3
+emission_rect_extents = Vector2(50, 0)
+direction = Vector2(0, -1)
+spread = 30.14
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 150.0
+angular_velocity_min = -0.95
+angular_velocity_max = 170.23
+angular_velocity_curve = SubResource("Curve_jkbmr")
+linear_accel_min = -57.41
+linear_accel_max = -4.54
+damping_max = 2.248
+damping_curve = SubResource("Curve_sy4n4")
+angle_min = -660.0
+angle_max = 720.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_6mmuq")
+color_ramp = SubResource("Gradient_feoee")
+anim_speed_curve = SubResource("Curve_eg6q6")
