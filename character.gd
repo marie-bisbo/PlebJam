@@ -12,6 +12,8 @@ var rolling = false
 var position_offset = Vector2(0, -20)
 var attack_range = Vector2(50, -20)
 
+var attack_amount = 50
+
 func _physics_process(delta):	
 	if Input.is_action_just_pressed("attack"):
 		attacking = true
@@ -21,12 +23,7 @@ func _physics_process(delta):
 		query.exclude = [self, $"../Thing"]
 		var result = space_state.intersect_ray(query)
 		if (result):
-			# print("Result: ", result.collider.destroy())
-			result.collider.queue_free()
-			pass
-		else:
-			print("No hit")
-			pass
+			result.collider.deal_damage(attack_amount)
 	
 	if Input.is_action_just_pressed("roll"):
 		if is_on_floor() and abs(velocity.x) > 0:
